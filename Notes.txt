@@ -1,0 +1,29 @@
+ASCII Values :
+
+'A' - 65
+'a' - 97
+0 - 48
+
+Calculation Order in C++ Data-types : (Decreasing Order : First One is heighest)
+
+1. Double
+2. Float
+3. Long Long Int
+4. Long Int
+5. Int
+6. Characters
+
+If there mixed Calculation of combined data types than output will be of higher types
+For example : 
+'a' + 1; // Outputs 98
+7 / 2; // Outputs 3
+7 / 2.0; // Outputs 3.5
+
+Also first Calculation is done than data is store. For example;
+double a = 3 / 2;
+Outputs : 1
+Because 3 and 2 both are integer types therefore there output will be of also of integer type than they will get store in a as double;
+
+Size Limit for Local Array : 10^5
+Size Limit for Global Array : 10^7 (Must be declared with const keyword)
+
