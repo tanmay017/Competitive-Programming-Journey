@@ -1,0 +1,10 @@
+1. git init (for initialization)
+2. git status
+3. git add .fileName (for adding to stagging area)
+5. git restore --staged .fileName (for removing file from staging area)
+6. git commit -m "Desired Message"
+7. git log (to see all the commit history)
+8. git reset commit-hash (here commit-hash could be seen from git log | This command send all the above commits back to staging area)
+9. git stash (git stash temporarily shelves (or stashes) changes you've made to your working copy so you can work on something else, and then come back and re-apply them later on)
+10. git stash pop (to reapply previously stash change)
+11. git stash clean (deletes all the files in stash)
