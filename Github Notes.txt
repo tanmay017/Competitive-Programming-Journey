@@ -14,3 +14,19 @@
 15. git branch new_branch_name (To create a new branch)
 16. git checkout branch_name (To switch to desired branch | All the commits will be done to this branch now)
 17. git merge branch_name (To merge a branch to main branch)
+18. git remote add upstream url
+19. git fetch --all --prune
+20. git push orgin main -f
+21. git reset --hard upstream
+For Contributing to Existing Project follow below steps : 
+Step 1 : Fork the project to you own Account as a seperate repository
+Step 2 : Now clone the project to own local system
+Step 3 :  
+
+Never commit on main branch . One branch is equal to one pull request. So always create a new branch for new requests
+
+
+Topics :
+1. Making Pull Requests and keeping forked repository and upstream repository in sync
+2. Squashing Commits
+3. Merge Conflicts
