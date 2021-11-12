@@ -1,0 +1,4 @@
+1. Solved 1st problem in 20 min, struggled a bit, saw the editorial which emphasized on the constraints I stopped right there and saw 
+   constraints again and got the solution. Moral of the story always see constraints before starting to think about solution.
+
+Just solved one problem wasted the day
