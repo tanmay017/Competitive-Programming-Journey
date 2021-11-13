@@ -30,7 +30,8 @@ int main()
         mst_set[i] = false;
         key[i] = INT_MAX;
     }
-
+    key[0] = 0;
+    pq.push({0, 0});
     for (int ctr = 0; ctr < m - 1; ctr++)
     {
         int u = pq.top().second;
@@ -52,6 +53,6 @@ int main()
 
     for (int i = 0; i < m; i++)
     {
-        cout << parent[i] << " - " << i;
+        cout << parent[i] << " -> " << i << endl;
     }
 }

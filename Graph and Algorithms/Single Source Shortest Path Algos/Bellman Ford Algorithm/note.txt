@@ -1,0 +1,21 @@
+# Bellman Ford Algorithm is a single-source shortest path Algorithm.
+# It is used for Directed Graph having non-negative cycle and Undirected Graph having non-negative edges
+# Undirected Graph should have non-negative edges as it treats a undirected edge u - v, as u -> v and u <- v. So negative cycle will be formed
+# It is capable to deal with -ve edges which Dijkstra's Algorithm can't deal with.
+
+# Relaxation : 
+void relax(int u, int v, int wt) {
+    if(dist[v] > dist[u] + wt)
+        dist[v] = dist[u] + wt;
+}
+
+# Algorithm : 
+1) Initialize distance array which will store shortest distance from source node to that particular vectex with value of +infinity. Mark
+   distance of source node as 0.
+
+2) Now do relaxation of every edge N-1 time. 
+
+3) Attempt one more relaxation for each edge if any edge is up for relaxation it means that there is a -ve cycle in graph.
+
+TC : O(N * E) where N = Number of Vectices and E = Number of edges
+SC : O(N)

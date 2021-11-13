@@ -1,0 +1,2 @@
+1. Learned two important graph algorithms Bellman Ford and Dijkstra's algorithms.
+2. Solved 3 problems of 800, 1000 and 1400 rated problems respectively.

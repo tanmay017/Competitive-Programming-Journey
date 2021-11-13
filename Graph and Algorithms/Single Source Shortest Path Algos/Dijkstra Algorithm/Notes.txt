@@ -1,0 +1,6 @@
+# Dijkstra's Algorithm is Single-Source Shortest Path Algorithm
+# It works for both directed and undirected graph with +ve edges only.
+
+# Algorithm :
+1) Create 
+2) Create a min-heap to store dist, node as pair. 
