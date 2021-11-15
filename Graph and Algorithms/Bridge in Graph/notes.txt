@@ -1,0 +1,12 @@
+# A bridge is defined as an edge which, when removed, makes the graph disconnected (or more precisely, increases the number of connected components in the graph).
+
+# Let's say we are in the DFS, looking through the edges starting from vertex v. The current edge (v,to) is a bridge if and only if none of 
+  the vertices to and its descendants in the DFS traversal tree has a back-edge to vertex v or any of its ancestors. Indeed, this condition
+  means that there is no other way from v to to except for edge (v,to).
+
+# Algorithm : There are three cases while looking up through the adjacent nodes connected to v in a DFS :
+
+1) Adjacent Node is Parent Node : So we just skip this case with continue
+2) Adjacent Node is visited : It means it is a back-edge. And we will mark low[node] = min(low[node], tin[adjacent])
+3) Adjacent Node is not visited : Do a DFS call, then mark low[node] = min(low[node], low[adjacent]), then check if(low[adjacent] > tin[v]) if true than it is bridge
+ 
