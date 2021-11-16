@@ -1,0 +1,29 @@
+# Reference : CP Algorithms : https://cp-algorithms.com/graph/cutpoints.html and Code N Code Channel : https://youtu.be/zuY5PtC1ogY 
+
+An articulation point (or cut vertex) is defined as a vertex which, when removed along with associated edges, makes the graph disconnected (or more precisely, increases the number of connected components in the graph).
+
+Some Key Observation point about articulation point :
+
+1) End-points of a bridge will be an articulation point if that node has degree at least 2.
+
+2) It is not necessary for and articulation point to be an end-point of a bridge.
+
+3) Finding bridges algorithm can not be used to find articulation point.
+
+Intuition : 
+
+1) Let's say we are in the DFS, looking through the edges starting from vertex v≠root. If the current edge (v,to) is such that none of the vertices to or its descendants in the DFS traversal tree has a back-edge to any of ancestors of v, then v is an articulation point. Otherwise, v is not an articulation point.
+
+2) Let's consider the remaining case of v=root. This vertex will be the point of articulation if and only if this vertex has more than one child in the DFS tree.
+
+Algorithm :
+There are three cases while looking for vertex v and we are in edge (v, to) :
+
+1) if to == parent then continue
+2) if to is visited than just calculate low[v] = min(low[v], tin[to]); //back-edge condition
+3) if to is not visited than do dfs(to, v) calculate low[v] = min(low[v], low[to]) and if(low[to] >= tin[v]) then it is articulation point; 
+
+# Though this algorithm looks very similar to bridge in Graph but there are some Implementation Difference : 
+
+1) the check condition is if(low[to] >= tin[v]) in bridge it was if(low[to] > tin[v])
+2) There is an edge case for root whereas there was no edge case for root in find bridge algorithm

@@ -1,0 +1,4 @@
+# Did crio's development.
+# Solved some permutations and combinations basic questions
+# Learned Heap Data Structure Basics
+# Solved problems of higher rating than usual now new normal is 1000 - 1400 rating problems.

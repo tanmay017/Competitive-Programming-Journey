@@ -1,3 +1,4 @@
+// https://codeforces.com/problemset/problem/1607/C : Correct Solution : Self Solved
 #include <bits/stdc++.h>
 //#include<ext/pb_ds/assoc_container.hpp>
 //#include<ext/pb_ds/tree_policy.hpp>
@@ -38,47 +39,27 @@ void c_p_c2()
     cout.tie(NULL);
 }
 
-void addEdge(int u, int v, int wt, vector<pair<int, int>> adj[])
-{
-    adj[u].push_back({v, wt});
-    adj[v].push_back({u, wt});
-}
-
 void solve()
 {
-    int n, m, src;
-    cin >> n >> m >> src;
-    vector<pair<int, int>> adj[n];
-    for (int i = 0; i < m; i++)
-    {
-        int u, v, wt;
-        cin >> u >> v >> wt;
-        addEdge(u, v, wt, adj); // todo
-    }
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // min-heap;
-    vector<int> dist(n, 10000000);
-    pq.push({0, src});
-    dist[src] = 0;
-    while (!pq.empty())
-    {
-        int u = pq.top().second;
-        pq.pop();
-        for (auto itr : adj[u])
-        {
-            int v = itr.first;
-            int wt = itr.second;
-            if (dist[v] > dist[u] + wt)
-            {
-                dist[v] = dist[u] + wt;
-                pq.push({dist[v], v});
-            }
-        }
-    }
-
+    int n;
+    cin >> n;
+    priority_queue<int, vector<int>, greater<int>> pq;
     for (int i = 0; i < n; i++)
     {
-        cout << i << " " << dist[i] << endl;
+        int num;
+        cin >> num;
+        pq.push(num);
     }
+    int offset = 0;
+    int res = INT_MIN;
+    while (!pq.empty())
+    {
+        int curr = pq.top();
+        pq.pop();
+        res = max(res, curr + offset);
+        offset -= curr;
+    }
+    cout << res << endl;
 }
 
 int32_t main()
@@ -86,7 +67,7 @@ int32_t main()
     c_p_c();
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     for (int i = 0; i < t; i++)
     {
         solve();

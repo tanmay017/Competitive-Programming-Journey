@@ -37,48 +37,67 @@ void c_p_c2()
     cin.tie(NULL);
     cout.tie(NULL);
 }
-
-void addEdge(int u, int v, int wt, vector<pair<int, int>> adj[])
+void heapify(int arr[], int n, int i)
 {
-    adj[u].push_back({v, wt});
-    adj[v].push_back({u, wt});
+    int left = 2 * i + 1;  // 2 * i for 1-based indexing
+    int right = 2 * i + 2; // 2 * i + 1 for 1-based indexing
+    int largest = i;
+    if (left < n && arr[left] > arr[largest])
+    {
+        largest = left;
+    }
+    if (right < n && arr[right] > arr[largest])
+    {
+        largest = right;
+    }
+    if (largest != i)
+    {
+        swap(arr[i], arr[largest]);
+        heapify(arr, n, largest);
+    }
+}
+
+void buildHeap(int arr[], int n)
+{
+    for (int i = n / 2 - 1; i >= 0; i--)
+    {
+        // start i = n / 2 for(1 based indexing)
+        heapify(arr, n, i);
+    }
+}
+
+void heapsort(int arr[], int n)
+{
+    buildHeap(arr, n);
+    int sz = n;
+    for (int i = n - 1; i >= 1; i--)
+    {
+        swap(arr[0], arr[i]);
+        sz--;
+        heapify(arr, sz, 0);
+    }
+}
+
+void printArr(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
 }
 
 void solve()
 {
-    int n, m, src;
-    cin >> n >> m >> src;
-    vector<pair<int, int>> adj[n];
-    for (int i = 0; i < m; i++)
-    {
-        int u, v, wt;
-        cin >> u >> v >> wt;
-        addEdge(u, v, wt, adj); // todo
-    }
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // min-heap;
-    vector<int> dist(n, 10000000);
-    pq.push({0, src});
-    dist[src] = 0;
-    while (!pq.empty())
-    {
-        int u = pq.top().second;
-        pq.pop();
-        for (auto itr : adj[u])
-        {
-            int v = itr.first;
-            int wt = itr.second;
-            if (dist[v] > dist[u] + wt)
-            {
-                dist[v] = dist[u] + wt;
-                pq.push({dist[v], v});
-            }
-        }
-    }
-
+    int n;
+    cin >> n;
+    int arr[n];
     for (int i = 0; i < n; i++)
     {
-        cout << i << " " << dist[i] << endl;
+        cin >> arr[i];
     }
+    heapsort(arr, n);
+    printArr(arr, n);
 }
 
 int32_t main()
@@ -86,7 +105,7 @@ int32_t main()
     c_p_c();
 
     int t = 1;
-    // cin >> t;
+    // cin>>t;
     for (int i = 0; i < t; i++)
     {
         solve();

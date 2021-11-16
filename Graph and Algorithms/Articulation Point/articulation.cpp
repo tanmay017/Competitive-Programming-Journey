@@ -37,47 +37,68 @@ void c_p_c2()
     cin.tie(NULL);
     cout.tie(NULL);
 }
-
-void addEdge(int u, int v, int wt, vector<pair<int, int>> adj[])
+vector<vector<int>> adj;
+vector<int> vis;
+vector<int> tin, low;
+int timer;
+void itIsCutpoint(int v)
 {
-    adj[u].push_back({v, wt});
-    adj[v].push_back({u, wt});
+    cout << v << " is a Cutpoint (Articulation Point)" << endl;
+}
+
+void dfs(int v, int p = -1)
+{
+    vis[v] = 1;
+    tin[v] = low[v] = timer++;
+    int children = 0;
+    for (auto to : adj[v])
+    {
+        if (to == p)
+            continue;
+        if (vis[to])
+        {
+            //back-edge
+            low[v] = min(low[v], tin[to]);
+        }
+        else
+        {
+            //foward edge
+            dfs(to, v);
+            low[v] = min(low[v], low[to]);
+            if (low[to] >= tin[v] && p != -1)
+                itIsCutpoint(v);
+            children++;
+        }
+    }
+    if (p == -1 && children > 1)
+        itIsCutpoint(v);
+}
+
+void addEdge(int u, int v)
+{
+    adj[u].push_back(v);
+    adj[v].push_back(u);
 }
 
 void solve()
 {
-    int n, m, src;
-    cin >> n >> m >> src;
-    vector<pair<int, int>> adj[n];
-    for (int i = 0; i < m; i++)
+    timer = 0;
+    int n, m;
+    cin >> n >> m;
+    adj.assign(n, vector<int>());
+    vis.assign(n, 0);
+    tin.assign(n, -1);
+    low.assign(n, -1);
+    for (int i = 1; i <= m; i++)
     {
-        int u, v, wt;
-        cin >> u >> v >> wt;
-        addEdge(u, v, wt, adj); // todo
+        int u, v;
+        cin >> u >> v;
+        addEdge(u, v);
     }
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // min-heap;
-    vector<int> dist(n, 10000000);
-    pq.push({0, src});
-    dist[src] = 0;
-    while (!pq.empty())
-    {
-        int u = pq.top().second;
-        pq.pop();
-        for (auto itr : adj[u])
-        {
-            int v = itr.first;
-            int wt = itr.second;
-            if (dist[v] > dist[u] + wt)
-            {
-                dist[v] = dist[u] + wt;
-                pq.push({dist[v], v});
-            }
-        }
-    }
-
     for (int i = 0; i < n; i++)
     {
-        cout << i << " " << dist[i] << endl;
+        if (!vis[i])
+            dfs(i);
     }
 }
 
@@ -86,7 +107,7 @@ int32_t main()
     c_p_c();
 
     int t = 1;
-    // cin >> t;
+    // cin>>t;
     for (int i = 0; i < t; i++)
     {
         solve();

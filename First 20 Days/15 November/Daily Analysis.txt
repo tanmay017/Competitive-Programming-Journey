@@ -1,0 +1,4 @@
+# Studied basic concepts of Permutations and Combinations. Resource 1) https://youtu.be/ETiRE7N7pEI 2) https://www.youtube.com/c/DontMemorise
+# Learned Algorithm to find Articulation point in graph.
+# Did some lil college stuff
+# Did only one problem

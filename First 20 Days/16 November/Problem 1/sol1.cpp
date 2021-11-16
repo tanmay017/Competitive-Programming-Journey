@@ -1,3 +1,4 @@
+// https://codeforces.com/contest/1589/problem/B : Correct Solution : Saw Editorial
 #include <bits/stdc++.h>
 //#include<ext/pb_ds/assoc_container.hpp>
 //#include<ext/pb_ds/tree_policy.hpp>
@@ -38,47 +39,13 @@ void c_p_c2()
     cout.tie(NULL);
 }
 
-void addEdge(int u, int v, int wt, vector<pair<int, int>> adj[])
-{
-    adj[u].push_back({v, wt});
-    adj[v].push_back({u, wt});
-}
-
 void solve()
 {
-    int n, m, src;
-    cin >> n >> m >> src;
-    vector<pair<int, int>> adj[n];
-    for (int i = 0; i < m; i++)
-    {
-        int u, v, wt;
-        cin >> u >> v >> wt;
-        addEdge(u, v, wt, adj); // todo
-    }
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // min-heap;
-    vector<int> dist(n, 10000000);
-    pq.push({0, src});
-    dist[src] = 0;
-    while (!pq.empty())
-    {
-        int u = pq.top().second;
-        pq.pop();
-        for (auto itr : adj[u])
-        {
-            int v = itr.first;
-            int wt = itr.second;
-            if (dist[v] > dist[u] + wt)
-            {
-                dist[v] = dist[u] + wt;
-                pq.push({dist[v], v});
-            }
-        }
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << i << " " << dist[i] << endl;
-    }
+    int n, m;
+    cin >> n >> m;
+    int ar = n * m;
+    int res = ceil(ar / 3.0);
+    cout << res << endl;
 }
 
 int32_t main()
@@ -86,7 +53,7 @@ int32_t main()
     c_p_c();
 
     int t = 1;
-    // cin >> t;
+    // cin>>t;
     for (int i = 0; i < t; i++)
     {
         solve();
